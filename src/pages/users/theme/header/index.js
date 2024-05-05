@@ -1,13 +1,14 @@
 import { memo, useState } from "react";
 import "./style.scss";
-import { AiFillTwitterSquare, AiOutlineFacebook, AiOutlineMail, AiOutlineMenu, AiOutlinePhone, AiOutlinePinterest, AiOutlineShopping, AiOutlineUser } from "react-icons/ai"
+import { AiFillTwitterSquare, AiOutlineDownCircle, AiOutlineFacebook, AiOutlineMail, AiOutlineMenu, AiOutlinePhone, AiOutlinePinterest, AiOutlineShopping, AiOutlineShoppingCart, AiOutlineUpCircle, AiOutlineUser } from "react-icons/ai"
 import { Link } from "react-router-dom";
 import { formatter } from "utils/fomater";
 import { ROUTERS } from "../../../../utils/router";
 const Header  = () => {
 
     const [isShowCategories, setShowCategories] = useState(true)
-    const [menus] = useState([
+    const [isShowHumberger, setShowHumberGer] = useState(false)
+    const [menus, setMenu] = useState([
         {
             name: "trang chủ",
             path: ROUTERS.USER.HOME,
@@ -47,6 +48,100 @@ const Header  = () => {
 
     return (
     <>
+        <div 
+            className={`humberger__menu__overlay${
+                isShowHumberger ? " active" : ""
+            }`}
+            onClick={() => setShowHumberGer(false)}
+        />
+        <div 
+            className={`humberger__menu__wrapper${
+                isShowHumberger ? " show" : ""
+            }`}
+        >
+            <div className="header__logo">
+                <h1>KM Shop</h1>
+            </div>
+            <div className="humberger__menu__cart">
+                <ul>
+                    <li>
+                        <Link to={""}>
+                            <AiOutlineShoppingCart/> <span>1</span>
+                        </Link>
+                    </li>
+                </ul>
+                <div className="header__cart__price">
+                    Giỏ hàng: <span>{formatter(10293923)}</span>
+                </div>
+            </div>
+            <div className="humberger__menu__widget">
+                <div className="header__top__right__auth">
+                    <Link to={""}>
+                        <AiOutlineUser/>Đăng nhập
+                    </Link>
+                </div>
+            </div>
+            <div className="humberger__menu__nav">
+                <ul>
+                    {
+                        menus.map((menu, menuKey) => (
+                            <li key={menuKey}>
+                                <Link 
+                                    to={menu.path}
+                                    onClick={() => {
+                                        const newMenus = [...menus];
+                                        newMenus[menuKey].isShowSubmenu = 
+                                            !newMenus[menuKey].isShowSubmenu;
+                                        setMenu(newMenus);
+                                    }}
+                                >
+                                    {menu.name}
+                                    {menu.child && (
+                                        menu.isShowSubmenu ? (
+                                            <AiOutlineDownCircle />
+                                        )
+                                        : (<AiOutlineUpCircle />
+                                    ))}
+                                </Link>
+                                {menu.child && (
+                                    <ul 
+                                        className={`header__menu__dropdown ${
+                                            menu.isShowSubmenu ? "show__subMenu" : ""
+                                        }`}
+                                    >
+                                        {menu.child.map((childItem, childKey) => (
+                                            <li key={`${menuKey}-${childKey}`}>
+                                                <Link to={childItem.path}>{childItem.name}</Link>
+                                            </li>
+                                        ))}
+                                </ul>
+
+                                )}
+                            </li>
+                        ))
+                    }
+                </ul>
+            </div>
+            <div className="header__top__right__social">
+                <Link to={""}>
+                    <AiOutlineFacebook />
+                </Link>
+                <Link to={""}>
+                    <AiOutlinePinterest />
+                </Link>
+                <Link to={""}>
+                    <AiFillTwitterSquare />
+                </Link>
+            </div>
+            <div className="humberger__menu__contact">
+                <ul>
+                    <li>
+                        <i className="fa fa-envelope" /> nhankm@gmal.com
+                    </li>
+                    <li>Miễn phí đơn từ 200000</li>
+                </ul>
+            </div>
+        </div>
         <div className="header__top">
             <div className="container">
                 <div className="row">
@@ -89,12 +184,12 @@ const Header  = () => {
         </div>
         <div className="container">
             <div className="row">
-                <div className="col-xl-3">
+                <div className="col-lg-3">
                     <div className="header__logo">
                         <h1>KM Shop</h1>
                     </div>
                 </div>
-                <div className="col-xl-6">
+                <div className="col-lg-6">
 
                     <nav className="header__menu">
                         <ul>
@@ -127,7 +222,7 @@ const Header  = () => {
                     </nav>
 
                 </div>
-                <div className="col-xl-3">
+                <div className="col-lg-3">
                     <div className="header__cart">
                         <div className="header__cart__price">
                             <span>{formatter(300000)}</span>
@@ -139,6 +234,9 @@ const Header  = () => {
                                 </Link>
                             </li>
                         </ul>
+                    </div>
+                    <div className="humberger__open">
+                        <AiOutlineMenu onClick={() => setShowHumberGer(true)}/>
                     </div>
                 </div>
             </div>
