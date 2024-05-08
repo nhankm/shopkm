@@ -34,12 +34,12 @@ const responsive = {
     items: 4
   },
   tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2
+    breakpoint: { max: 1020, min: 464 },
+    items: 3
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1
+    items: 2
   }
 };
 
@@ -180,7 +180,7 @@ const HomePage  = () => {
 
             const tabPanel = [];
             data[key].products.forEach((item, j) => {
-                tabPanel.push(<div className="col-lg-3" key={j}>
+                tabPanel.push(<div className="col-lg-3 col-md-6" key={j}>
                     <div className="featured__item">
                         <div 
                             className="featured__item__pic"

@@ -201,10 +201,10 @@ $bannerImg: "/assets/users/images/hero/banner.jpeg";
     ul {
         border: 1px solid #ebebeb;
         position: absolute;
-        opacity: 1;
+        display: none;
         width: 99%;
         background: #ffffff;
-        transition: all 0.2s;
+        transition: all 0.4s;
 
         li {
             list-style: none;
@@ -229,7 +229,7 @@ $bannerImg: "/assets/users/images/hero/banner.jpeg";
         }
 
         &.hidden {
-            opacity: 0;
+            display: inline;
         }
     }
 }
@@ -237,7 +237,7 @@ $bannerImg: "/assets/users/images/hero/banner.jpeg";
 .hero__search_container {
 
     .hero__search__form {
-        width: 610px;
+        width: 70%;
         height: 50px;
         float: left;
         padding-left: 15px;
@@ -264,9 +264,9 @@ $bannerImg: "/assets/users/images/hero/banner.jpeg";
         }
     
         button {
-            font-size: 16px;
+            font-size: 14px;
             color: #ffffff;
-            font-weight: 800;
+            font-weight: 600;
             text-transform: uppercase;
             display: inline-block;
             padding: 16px 30px 17px;
@@ -312,7 +312,6 @@ $bannerImg: "/assets/users/images/hero/banner.jpeg";
     }
 
     .hero__item {
-        margin-left: 15px;
         background-image: url($bannerImg);
         background-size: cover;
         height: 410px;
@@ -320,7 +319,6 @@ $bannerImg: "/assets/users/images/hero/banner.jpeg";
         align-items: center;
         width: 100%;
         margin-left: 15px;
-        //padding-left: 75px;
 
         .hero__text {
             padding-left: 75px;
@@ -376,7 +374,8 @@ $bannerImg: "/assets/users/images/hero/banner.jpeg";
 @include Responsive($TABLET_DEVICE) {
     .header__top,
     .header__menu,
-    .header__cart {
+    .header__cart,
+    .hero__search {
         display: none;
     }
 
@@ -524,6 +523,51 @@ $bannerImg: "/assets/users/images/hero/banner.jpeg";
 
         .show__subMenu {
             display: block;
+        }
+    }
+
+    .header__top__right__social {
+        align-items: center;
+
+        a {
+
+            svg {
+                display: inline-block;
+                column-gap: 5px;
+                padding: 0px 5px;
+                color: map.get($theme-colors, "bold-text");
+                align-items: center;
+            }
+        }
+    }
+
+    .humberger__menu__contact {
+        display: flex;
+
+        ul {
+            display: inline-block;
+            list-style: none;
+            padding: 10px 5px;
+            color: map.get($theme-colors, "normal-text");
+
+            li {
+                padding: 10px 0;
+            }
+        }
+    }
+
+    .hero__categories {
+        ul {
+            width: 100%;;
+        }
+
+    }
+
+    .hero__search_container {
+        .hero__item {
+            width: auto;
+            margin-left: 0;
+            margin-top: 10px;
         }
     }
 }
