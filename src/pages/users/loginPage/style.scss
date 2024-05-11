@@ -1,0 +1,121 @@
+@use "sass:map";
+@import "style/pages/all";
+@import "style/pages/responsive";
+
+.login {
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    overflow: auto;
+    left: 0;
+    top: 0;
+    width: 100%;
+
+    .login__container {
+        background: #fefefe;
+
+        .ant-input-affix-wrapper {
+            border: none;
+            border-bottom: 1px solid #edebeb;
+    
+            :hover,
+            :focus {
+                border-color: map.get($theme-colors, "main");
+                box-shadow: none !important;
+            }
+        }
+    
+        .ant-form-item-label label {
+            font-size: 15px !important;
+        }
+    
+        .ant-input-affix-wrapper {
+            input {
+                font-size: 16px !important;
+            }
+        }
+    
+        .ant-input {
+            svg {
+                height: 30px;
+            }
+        }
+    
+        .ant-tabs-nav {
+            ::before {
+                border-bottom: unset;
+            }
+    
+            .ant-tabs-nav-wrap {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}
+
+.login__form__container {
+    margin-bottom: 30px;
+
+    .login__form {
+        width: 80%;
+        margin: auto;
+
+        .forgotPass {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #666;
+            text-align: end;
+            margin-top: -15px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            cursor: pointer;
+
+            :hover {
+                color: #3c3a3a;
+            }
+        }
+
+        .action__container {
+            display: grid;
+            row-gap: 5px;
+
+            .btn__login {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                font-weight: 600;
+                color: #fff;
+                border: none;
+                background-size: 300% 100%;
+                transition: all 0.4s ease-in-out;
+                box-shadow: none;
+                cursor: pointer;
+                justify-content: center;
+
+                :hover {
+                    background-position: 100% 0;
+                    transition: all 0.4s ease-in-out;
+                    color: #fff !important;
+                    background-color: transparent !important;
+                }
+
+                p {
+                    margin-left: 4px;
+                }
+            }
+
+            .btn__normal {
+                background:map.get($theme-colors, "main");
+            }
+
+            .btn__fb {
+                background: #3b5998;
+            }
+
+            .btn__gg {
+                background: #ea4335;
+            }
+        }
+    }
+}
+

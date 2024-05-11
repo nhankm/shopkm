@@ -4,8 +4,11 @@ import { AiFillTwitterSquare, AiOutlineDownCircle, AiOutlineFacebook, AiOutlineM
 import { Link } from "react-router-dom";
 import { formatter } from "utils/fomater";
 import { ROUTERS } from "../../../../utils/router";
+import LoginPage from "pages/users/loginPage";
+import { Modal } from "antd";
 const Header  = () => {
 
+    const [ isShowLogin, setIsShowLogin ] = useState(false);
     const [isShowCategories, setShowCategories] = useState(true)
     const [isShowHumberger, setShowHumberGer] = useState(false)
     const [menus, setMenu] = useState([
@@ -46,6 +49,14 @@ const Header  = () => {
         },
     ])
 
+    const showLogin = () => {
+        setIsShowLogin(true);
+    };
+
+    const handlecancel = () => {
+        setIsShowLogin(false);
+    }
+
     return (
     <>
         <div 
@@ -74,11 +85,12 @@ const Header  = () => {
                     Giỏ hàng: <span>{formatter(10293923)}</span>
                 </div>
             </div>
-            <div className="humberger__menu__widget">
-                <div className="header__top__right__auth">
-                    <Link to={""}>
-                        <AiOutlineUser/>Đăng nhập
-                    </Link>
+            <div 
+                className="humberger__menu__widget " 
+                onClick={showLogin}
+            >
+                <div className="header__top__right__auth" onClick={() => setShowHumberGer(false)}>
+                    <AiOutlineUser/>Đăng nhập
                 </div>
             </div>
             <div className="humberger__menu__nav">
@@ -172,10 +184,10 @@ const Header  = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link to={""}>
+                                <div onClick={showLogin}>
                                     <AiOutlineUser />
-                                </Link>
-                                <span>Đăng nhập</span>
+                                    <span>Đăng nhập</span>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -184,12 +196,12 @@ const Header  = () => {
         </div>
         <div className="container">
             <div className="row">
-                <div className="col-lg-3">
+                <div className="col-lg-3 col-md-6">
                     <div className="header__logo">
                         <h1>KM Shop</h1>
                     </div>
                 </div>
-                <div className="col-lg-6">
+                <div className="col-lg-6 nav__menu">
 
                     <nav className="header__menu">
                         <ul>
@@ -222,7 +234,7 @@ const Header  = () => {
                     </nav>
 
                 </div>
-                <div className="col-lg-3">
+                <div className="col-lg-3 col-md-6">
                     <div className="header__cart">
                         <div className="header__cart__price">
                             <span>{formatter(300000)}</span>
@@ -304,6 +316,13 @@ const Header  = () => {
                 </div>
             </div>
         </div>
+        <Modal
+            open = {isShowLogin} 
+            onCancel={handlecancel} 
+            footer={null}
+        >
+            <LoginPage/>
+        </Modal>
     </>
     );
 };

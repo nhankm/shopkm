@@ -373,7 +373,7 @@ $bannerImg: "/assets/users/images/hero/banner.jpeg";
 
 @include Responsive($TABLET_DEVICE) {
     .header__top,
-    .header__menu,
+    .nav__menu,
     .header__cart,
     .hero__search {
         display: none;

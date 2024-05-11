@@ -35,11 +35,11 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 1020, min: 464 },
-    items: 3
+    items: 2
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 2
+    items: 1
   }
 };
 
@@ -180,7 +180,7 @@ const HomePage  = () => {
 
             const tabPanel = [];
             data[key].products.forEach((item, j) => {
-                tabPanel.push(<div className="col-lg-3 col-md-6" key={j}>
+                tabPanel.push(<div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={j}>
                     <div className="featured__item">
                         <div 
                             className="featured__item__pic"
@@ -257,10 +257,10 @@ const HomePage  = () => {
             </div>
             <div className="container">
                 <div className="banner">
-                    <div className="banner__pic">
+                    <div className="banner__pic col-xs-12">
                         <img src={banner1} alt="banner"/>
                     </div>
-                    <div className="banner__pic">
+                    <div className="banner__pic col-xs-12">
                         <img src={banner2} alt="banner"/>
                     </div>
                 </div>
